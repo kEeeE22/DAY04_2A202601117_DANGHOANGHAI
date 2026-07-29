@@ -1,7 +1,110 @@
 {
   "dataset_id": "day04_v2_research_group",
   "dataset_role": "group",
-  "description": "Template để NHÓM tự viết đúng 10 case: 5 single-turn dùng query và 5 multi-turn dùng turns. Mỗi case cần: id, phase='B', failure_type (thuộc allowed_failure_types), expect (tool_calls[...] hoặc no_tool=true), và metadata.what_it_tests. File để trống có chủ đích vì mỗi nhóm phải tự thiết kế các case này.",
-  "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
-  "cases": []
+  "description": "Bộ 10 eval cases cho AI Research Assistant: 5 single-turn (dùng query) và 5 multi-turn (dùng turns từ 2 lượt trở lên). KHÔNG chứa các yêu cầu liên quan đến Telegram.",
+  "allowed_failure_types": [
+    "wrong_tool",
+    "wrong_arg_value",
+    "wrong_boundary",
+    "unnecessary_tool",
+    "out_of_scope",
+    "missing_info"
+  ],
+  "cases": [
+    {
+      "id": "G01_single_paper_search",
+      "phase": "B", "suite": "group",
+      "query": "Tìm cho mình các bài báo khoa học mới nhất về LLM reasoning trên ArXiv",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "papers", "args": {"query": "LLM reasoning"}}]},
+      "metadata": {"skill": "routing_paper_search", "difficulty": "easy", "what_it_tests": "Tìm kiếm bài báo khoa học trên ArXiv theo từ khóa -> chọn tool papers"}
+    },
+    {
+      "id": "G02_single_citation_lookup",
+      "phase": "B", "suite": "group",
+      "query": "Cho mình xem danh sách trích dẫn (citations) của bài báo 2301.00001",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "citation_lookup", "args": {"arxiv_id": "2301.00001"}}]},
+      "metadata": {"skill": "routing_citation_lookup", "difficulty": "medium", "what_it_tests": "Tra cứu trích dẫn bài báo khoa học qua arxiv_id -> chọn tool citation_lookup"}
+    },
+    {
+      "id": "G03_single_paper_text_extract",
+      "phase": "B", "suite": "group",
+      "query": "Tải và đọc nội dung chi tiết của bài báo khoa học https://arxiv.org/abs/2301.00001",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "paper_text", "args": {"arxiv_url": "https://arxiv.org/abs/2301.00001"}}]},
+      "metadata": {"skill": "routing_paper_text", "difficulty": "medium", "what_it_tests": "Đọc text bài báo ArXiv khi đã có URL -> chọn tool paper_text"}
+    },
+    {
+      "id": "G04_single_missing_paper_id",
+      "phase": "B", "suite": "group",
+      "query": "Lấy nội dung chi tiết bài báo này cho mình với",
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "clarify", "args": {"response_type": "text"}}]},
+      "metadata": {"skill": "clarify_missing_paper_id", "difficulty": "medium", "what_it_tests": "Yêu cầu đọc bài báo nhưng không cung cấp URL/ID -> gọi clarify để hỏi thông tin"}
+    },
+    {
+      "id": "G05_single_out_of_scope",
+      "phase": "B", "suite": "group",
+      "query": "Viết giúp mình một đoạn mã Python tính tổng 2 số nguyên",
+      "failure_type": "out_of_scope",
+      "expect": {"no_tool": true},
+      "metadata": {"skill": "out_of_scope_coding", "difficulty": "easy", "what_it_tests": "Yêu cầu lập trình không liên quan đến research -> không dùng tool nào"}
+    },
+    {
+      "id": "G06_multi_search_then_cancel",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tìm cho mình bài báo về Diffusion Model."},
+        {"role": "user", "content": "À thôi, cho mình biết bạn có thể hỗ trợ những tính năng nghiên cứu nào?"}
+      ],
+      "failure_type": "unnecessary_tool",
+      "expect": {"no_tool": true},
+      "metadata": {"skill": "no_tool_meta_multi", "difficulty": "medium", "what_it_tests": "Lượt thoại thứ 2 hỏi về khả năng của assistant -> trả lời trực tiếp không dùng tool"}
+    },
+    {
+      "id": "G07_multi_format_digest",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Mình đã tìm được danh sách 5 bài báo khoa học về LLM reasoning."},
+        {"role": "user", "content": "Trình bày danh sách bài báo này thành dạng bản tin tổng hợp giúp mình."}
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "format", "args": {"template": "sections"}}]},
+      "metadata": {"skill": "routing_format_digest", "difficulty": "medium", "what_it_tests": "Hội thoại 2 lượt: Trình bày dữ liệu bài báo thu thập được thành bản tin -> chọn tool format"}
+    },
+    {
+      "id": "G08_multi_search_specific_arg",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Mình đang làm tổng quan tài liệu về mô hình Transformer."},
+        {"role": "user", "content": "Tìm cho mình 10 bài báo mới nhất về Transformer architecture."}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "papers", "args": {"query": "Transformer architecture", "max_results": 10}}]},
+      "metadata": {"skill": "arg_max_results_multi", "difficulty": "medium", "what_it_tests": "Hội thoại 2 lượt: Trích xuất đúng tham số max_results=10 từ lượt nói của user"}
+    },
+    {
+      "id": "G09_multi_missing_topic_clarify",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Chào bạn, mình là nghiên cứu sinh AI."},
+        {"role": "user", "content": "Tìm kiếm giúp mình một số bài báo mới."}
+      ],
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "clarify", "args": {"response_type": "text"}}]},
+      "metadata": {"skill": "clarify_missing_topic", "difficulty": "medium", "what_it_tests": "Hội thoại 2 lượt: Muốn tìm bài báo nhưng không nói chủ đề gì -> gọi clarify hỏi từ khóa/chủ đề"}
+    },
+    {
+      "id": "G10_multi_policy_lookup",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Mình đang chuẩn bị bài báo nghiên cứu để xuất bản ra bên ngoài."},
+        {"role": "user", "content": "Công ty mình có quy định gì về việc trích dẫn nguồn tài liệu tham khảo khi xuất bản bài báo không?"}
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "policy", "args": {"query": "trích dẫn", "policy_area": "source_citation"}}]},
+      "metadata": {"skill": "routing_policy_citation", "difficulty": "medium", "what_it_tests": "Hội thoại 2 lượt: Tra cứu chính sách trích dẫn tài liệu nội bộ -> chọn tool policy"}
+    }
+  ]
 }
