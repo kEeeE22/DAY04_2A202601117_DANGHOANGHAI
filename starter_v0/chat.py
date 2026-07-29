@@ -112,7 +112,10 @@ def run_model_tool_loop(
         non_clarification_events: list[dict[str, Any]] = []
 
         for call in calls:
-            print(f"🔧 {call.name}({json.dumps(call.args, ensure_ascii=False, sort_keys=True)})")
+            try:
+                print(f"[TOOL] {call.name}({json.dumps(call.args, ensure_ascii=False, sort_keys=True)})")
+            except Exception:
+                pass
             event = execute_tool_call(call)
             round_record["tool_results"].append(event)
             all_tool_events.append(event)
