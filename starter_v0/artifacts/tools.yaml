@@ -116,3 +116,13 @@ tools:
         max_pages: {type: integer, default: 5, description: "Số trang"}
         max_chars: {type: integer, default: 8000, description: "Số ký tự"}
       required: [arxiv_url]
+
+  - name: citation_lookup
+    description: "Tra cứu metadata trích dẫn của một bài báo khoa học (tác giả, venue, năm, số lượt trích dẫn, BibTeX, danh sách tài liệu tham khảo). Nhận title, DOI, hoặc arXiv ID."
+    parameters:
+      type: object
+      properties:
+        title: {type: string, default: "", description: "Tiêu đề bài báo"}
+        doi: {type: string, default: "", description: "DOI của bài báo"}
+        arxiv_id: {type: string, default: "", description: "arXiv ID (ví dụ 1706.03762)"}
+      required: []

@@ -6,8 +6,13 @@
 
 ## Team
 
-- Team:
-- Members:
+- Team: 
+- Members: 
+- Đặng Hoàng Hải - 2A202601117
+- Dương Ngọc Tiến - 2A202601401
+- Nguyễn Minh Huy - 2A202601303
+- Nguyễn Mạnh Hiệp - 2A202601319
+- Ngô Phương Nam - 2A202601231
 - Provider/model:
 
 ---
@@ -16,7 +21,7 @@
 
 ## A1. Agent này làm được gì
 
-> 1–2 câu mô tả agent dùng để làm gì.
+> Research agent scout: agent có khả năng tìm kiếm bài báo nghiên cứu 
 
 Ví dụ: "Research agent: tìm tin theo từ khóa / theo tài khoản, đọc URL và tổng hợp thành digest."
 
@@ -33,8 +38,10 @@ Ví dụ: "Research agent: tìm tin theo từ khóa / theo tài khoản, đọc 
 | Tên tool | Làm được gì | Tool mới nhóm thêm? |
 |---|---|---|
 | clarify | hỏi lại người dùng khi thiếu thông tin | không |
-|  |  |  |
-|  |  |  |
+| paper_text | parse thông tin từ 1 file | không |
+| papers | tìm kiếm bài báo trên arxiv | không |
+| format | chuyển nội dung thành văn bản | không |
+| citation_look_up | lấy thông tin citation của bài báo | có |
 
 ## A3. Câu hỏi mẫu để thử
 
