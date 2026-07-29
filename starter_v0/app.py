@@ -65,20 +65,20 @@ st.markdown("""
 
 html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
 
-/* ── gradient background ── */
+/* \u2500\u2500 gradient background \u2500\u2500 */
 [data-testid="stAppViewContainer"] {
-    background: linear-gradient(135deg, #0f0c29 0%, #1a1040 40%, #0d1b3e 100%);
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8edff 40%, #eef2ff 100%);
     min-height: 100vh;
 }
 [data-testid="stSidebar"] {
-    background: rgba(15, 12, 41, 0.95) !important;
+    background: rgba(255, 255, 255, 0.92) !important;
     border-right: 1px solid rgba(139, 92, 246, 0.2);
 }
 
-/* ── header ── */
+/* \u2500\u2500 header \u2500\u2500 */
 .ps-header {
-    background: linear-gradient(90deg, rgba(139,92,246,0.15), rgba(59,130,246,0.1));
-    border: 1px solid rgba(139,92,246,0.3);
+    background: linear-gradient(90deg, rgba(139,92,246,0.12), rgba(59,130,246,0.08));
+    border: 1px solid rgba(139,92,246,0.25);
     border-radius: 16px;
     padding: 20px 28px;
     margin-bottom: 20px;
@@ -87,90 +87,96 @@ html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
     gap: 16px;
 }
 .ps-header h1 { margin: 0; font-size: 1.8rem; font-weight: 700;
-    background: linear-gradient(90deg, #a78bfa, #60a5fa); -webkit-background-clip: text;
+    background: linear-gradient(90deg, #7c3aed, #2563eb); -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; }
-.ps-header p  { margin: 4px 0 0; font-size: 0.85rem; color: #94a3b8; }
+.ps-header p  { margin: 4px 0 0; font-size: 0.85rem; color: #64748b; }
 
-/* ── chat bubbles ── */
+/* \u2500\u2500 chat bubbles \u2500\u2500 */
 .chat-user {
-    background: linear-gradient(135deg, rgba(139,92,246,0.25), rgba(59,130,246,0.15));
-    border: 1px solid rgba(139,92,246,0.35);
+    background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(59,130,246,0.10));
+    border: 1px solid rgba(139,92,246,0.3);
     border-radius: 16px 16px 4px 16px;
-    padding: 14px 18px; margin: 10px 0; color: #e2e8f0;
+    padding: 14px 18px; margin: 10px 0; color: #1e1b4b;
     margin-left: 20%;
 }
 .chat-agent {
-    background: rgba(15, 23, 42, 0.7);
-    border: 1px solid rgba(148,163,184,0.15);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(139,92,246,0.15);
     border-radius: 16px 16px 16px 4px;
-    padding: 14px 18px; margin: 10px 0; color: #e2e8f0;
+    padding: 14px 18px; margin: 10px 0; color: #1e293b;
     margin-right: 20%;
+    box-shadow: 0 2px 8px rgba(139,92,246,0.06);
 }
 .chat-label { font-size: 0.72rem; font-weight: 600; letter-spacing: .06em;
     margin-bottom: 6px; text-transform: uppercase; }
-.chat-label.user  { color: #a78bfa; }
-.chat-label.agent { color: #60a5fa; }
+.chat-label.user  { color: #7c3aed; }
+.chat-label.agent { color: #2563eb; }
 
-/* ── tool trace card ── */
+/* \u2500\u2500 tool trace card \u2500\u2500 */
 .tool-card {
-    background: rgba(15, 23, 42, 0.8);
+    background: rgba(241, 245, 255, 0.9);
     border: 1px solid rgba(139,92,246,0.2);
-    border-left: 3px solid #a78bfa;
+    border-left: 3px solid #7c3aed;
     border-radius: 10px;
     padding: 12px 16px;
     margin: 8px 0;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
-    color: #94a3b8;
+    color: #475569;
 }
-.tool-name { color: #a78bfa; font-weight: 600; font-size: 0.85rem; }
+.tool-name { color: #7c3aed; font-weight: 600; font-size: 0.85rem; }
 .tool-icon { font-size: 1.1rem; margin-right: 6px; }
 
-/* ── citation block ── */
+/* \u2500\u2500 citation block \u2500\u2500 */
 .citation-block {
-    background: rgba(16, 24, 40, 0.9);
-    border: 1px solid rgba(96,165,250,0.3);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(59,130,246,0.25);
     border-radius: 12px;
     padding: 16px 20px;
     margin: 10px 0;
+    box-shadow: 0 2px 8px rgba(59,130,246,0.06);
 }
-.citation-title { font-weight: 600; color: #60a5fa; font-size: 1rem; margin-bottom: 6px; }
-.citation-meta  { color: #94a3b8; font-size: 0.82rem; line-height: 1.6; }
-.citation-count { display: inline-block; background: rgba(139,92,246,0.2);
-    border: 1px solid rgba(139,92,246,0.4); border-radius: 20px;
-    padding: 2px 10px; font-size: 0.75rem; color: #a78bfa; margin-top: 6px; }
+.citation-title { font-weight: 600; color: #2563eb; font-size: 1rem; margin-bottom: 6px; }
+.citation-meta  { color: #475569; font-size: 0.82rem; line-height: 1.6; }
+.citation-count { display: inline-block; background: rgba(139,92,246,0.1);
+    border: 1px solid rgba(139,92,246,0.3); border-radius: 20px;
+    padding: 2px 10px; font-size: 0.75rem; color: #7c3aed; margin-top: 6px; }
 
-/* ── sidebar widgets ── */
-.sidebar-section { color: #64748b; font-size: 0.72rem; font-weight: 600;
+/* \u2500\u2500 sidebar widgets \u2500\u2500 */
+.sidebar-section { color: #94a3b8; font-size: 0.72rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: .08em; margin: 16px 0 6px; }
 
-/* ── quick prompts ── */
+/* \u2500\u2500 quick prompts \u2500\u2500 */
 .quick-btn { cursor: pointer; }
 
-/* ── input area ── */
+/* \u2500\u2500 input area placeholder ro rang \u2500\u2500 */
 [data-testid="stChatInput"] textarea {
-    background: rgba(15,23,42,0.8) !important;
-    border: 1px solid rgba(139,92,246,0.3) !important;
+    background: rgba(255,255,255,0.95) !important;
+    border: 1.5px solid rgba(139,92,246,0.35) !important;
     border-radius: 12px !important;
-    color: #e2e8f0 !important;
+    color: #1e293b !important;
+}
+[data-testid="stChatInput"] textarea::placeholder {
+    color: #64748b !important;
+    opacity: 1 !important;
 }
 [data-testid="stChatInput"] textarea:focus {
-    border-color: rgba(139,92,246,0.7) !important;
-    box-shadow: 0 0 0 2px rgba(139,92,246,0.15) !important;
+    border-color: rgba(124,58,237,0.6) !important;
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.12) !important;
 }
 
-/* ── metric pills ── */
+/* \u2500\u2500 metric pills \u2500\u2500 */
 .metric-pill {
     display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.25);
-    border-radius: 20px; padding: 4px 12px; font-size: 0.78rem; color: #a78bfa;
+    background: rgba(139,92,246,0.08); border: 1px solid rgba(139,92,246,0.2);
+    border-radius: 20px; padding: 4px 12px; font-size: 0.78rem; color: #7c3aed;
     margin: 3px;
 }
 
 /* scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.25); border-radius: 3px; }
 </style>
 """, unsafe_allow_html=True)
 
